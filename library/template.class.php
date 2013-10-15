@@ -1,0 +1,50 @@
+<?php
+class Template {
+	
+	protected $variables = array();
+	protected $_controller;
+	protected $_action;
+	
+	function __construct($controller,$action) {
+		$this->_controller = $controller;
+		$this->_action = $action;
+	}
+
+
+	function set($name,$value) {
+		$this->variables[$name] = $value;
+	}
+	
+    function render($doNotRenderHeader = 0) {
+
+		extract($this->variables);
+		
+		if ($doNotRenderHeader == 0) {
+			
+			if (file_exists('../application/views/' . $this->_controller . '/header.php')) {
+				include ('../application/views/' . $this->_controller . '/header.php');
+			} else {
+
+					include(__DIR__ . '/../application/views/header.php');
+			}
+		}
+
+        //var_dump($this->_controller,$this->_action);
+        //exit;
+
+		if (file_exists('../application/views/' . $this->_controller . "/" . $this->_action . '.php')) {
+			include ('../application/views/' . $this->_controller ."/". $this->_action . '.php');
+		}else{
+            include('../application/views/home/index.php');
+        }
+			
+		if ($doNotRenderHeader == 0) {
+			if (file_exists('../application/views/' . $this->_controller . '/footer.php')) {
+				include ('../application/views/' . $this->_controller . '/footer.php');
+			} else {
+				include('../application/views/footer.php');
+			}
+		}
+    }
+
+}
