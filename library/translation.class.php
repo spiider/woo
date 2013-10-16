@@ -8,7 +8,7 @@ class language {
     public function __construct() {
 
         $this->lang = "pt_PT";
-        $this->db = new  Db(DB_NAME);
+        $this->db = new  DB(DB_NAME);
     }
 
     public function get ($e) {

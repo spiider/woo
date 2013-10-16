@@ -3,7 +3,7 @@ namespace library\Core;
 
 class Base {
     private $default = array("controller" => 'home', "action" => 'index');
-
+    private $defaultController = "HomeController"; // later will be default configurable
 
     public function setReporting()
     {
@@ -14,20 +14,8 @@ class Base {
             error_reporting(E_ALL);
             ini_set('display_errors','Off');
             ini_set('log_errors', 'On');
-            ini_set('error_log', '../tmp/logs/error.log');
+            ini_set('error_log', DIR_UP.'tmp/logs/error.log');
         }
-    }
-
-
-    private function routeURL($url) {
-        $routing = array();
-
-        foreach ( $routing as $pattern => $result ) {
-            if ( preg_match( $pattern, $url ) ) {
-                return preg_replace( $pattern, $result, $url );
-            }
-        }
-        return ($url);
     }
 
     /*
@@ -60,8 +48,8 @@ class Base {
         }
         $controllerName = ucfirst($controller).'Controller';
 
-        if(file_exists('../application/controllers/' . strtolower($controllerName) . '.php'))	$dispatch = new $controllerName($controller,$action);
-        else $dispatch = new HomeController("home","index");
+        if(file_exists(DIR_UP.'application/controllers/' . strtolower($controllerName) . '.php'))	$dispatch = new $controllerName($controller,$action);
+        else $dispatch = new $this->defaultController("home","index");
 
         if ((int)method_exists($controllerName, $action)) {
             call_user_func_array(array($dispatch,"beforeAction"),$queryString);

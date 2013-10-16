@@ -1,6 +1,6 @@
 <?php
-// I'm thinking add later some dirs here
-
+// DIR
+define('DIR_UP', "../");
 
 // Display errors
 // true = in webpage | false = log in file
@@ -11,6 +11,7 @@ define('DB_NAME', 'dbname');
 define('DB_USER', 'dbuser');
 define('DB_PASSWORD', 'dbpass');
 define('DB_HOST', 'localhost');
+define('DB_TYPE', 'mysql');
 
 
 // ReCAPTCH defenitions

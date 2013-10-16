@@ -1,4 +1,5 @@
 <?php
+//namespace library\Controller;
 
 class Controller {
 	
@@ -22,18 +23,6 @@ class Controller {
 		$this->render = 1;
 		$this->$model = new $model;
 		$this->_template = new Template($controller,$action);
-        $session = new sessions();
-        $this->logged = $session->isLogged();
-        $this->set("loginDetails",$this->logged);
-        $this->set("menuItem",$controller);
-
-        if(isset($_SESSION["error_msg"]))
-        {
-            $this->set("messageError",$_SESSION["error_msg"]);
-            unset($_SESSION["error_msg"]);
-        }else{
-            $this->set("messageError","");
-        }
 	}
 
 	public function set($name,$value) {
