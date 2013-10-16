@@ -18,10 +18,21 @@
 	}
 
 
-	if(isset($_GET['url'])) $url = $_GET['url'];
-	else $url = "home";
 
-    //$session = new session();
+    $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $url = urldecode($url);
+    $requested = "../public".$uri;
+
+    // This file allows us to emulate Apache's "mod_rewrite" functionality from the
+    // built-in PHP web server.
+    if ($url !== '/' and file_exists($requested))
+    {
+        return false;
+    }
+
+    // My old way
+	//if(isset($_GET['url'])) $url = $_GET['url'];
+	//else $url = "home";
 
     $sessions = new sessions();
 	$core = new CORE;
