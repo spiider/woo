@@ -1,5 +1,6 @@
 <?php
 namespace library\Core;
+use library\Controller;
 
 class Base {
     private $default = array("controller" => 'home', "action" => 'index');

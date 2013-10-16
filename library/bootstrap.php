@@ -1,5 +1,6 @@
 <?php
     use library\Core as core;
+    use library\Controller as Controller;
 
     require_once('../config/config.php');
 	require_once(DIR_UP.'config/inflection.php');
@@ -7,9 +8,10 @@
 
     // autoload from namespaces
     // implementing
-//    function autoload($className)
-//    {
-//        if($className == 'HomeController') return true;
+    // Temporary function!
+    function autoload($className)
+    {
+//        $folder = (strpos($className,'Controller') !== false) ? 'application/controllers/' : 'library/';
 //        var_dump($className);
 //        $className = ltrim($className, '\\');
 //        $fileName  = '';
@@ -21,12 +23,12 @@
 //        }
 //        $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.class.php';
 //
-//        require_once DIR_UP.'library/'.$fileName;
-//    }
-//    spl_autoload_register("autoload");
-
-	function __autoload($className) {
-		if (file_exists(DIR_UP.'library/'. ucfirst(strtolower($className)) . '.class.php')) {
+//        require_once DIR_UP.$folder.$fileName;
+        if(strpos($className,'\\') !== false) {
+            $e =  explode("/", $className);
+            $className = $e['1'];
+        }
+        if (file_exists(DIR_UP.'library/'. ucfirst(strtolower($className)) . '.class.php')) {
 			require_once(DIR_UP.'library/'. ucfirst(strtolower($className)) . '.class.php');
 			} else if (file_exists(DIR_UP.'application/controllers/' . ucfirst(strtolower($className)) . '.php')) {
 			require_once(DIR_UP.'application/controllers/' . ucfirst(strtolower($className)) . '.php');
@@ -35,8 +37,8 @@
 			} else {
 			/* Error Generation Code Here */
 		}
-	}
-
+    }
+    spl_autoload_register("autoload");
 
     $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     $url = urldecode($url);
@@ -54,6 +56,7 @@
 	//else $url = "home";
 
     //$sessions = new sessions();
+  //  new Controller\Controller("home","index");
     $Core = new core\Base();
 	$Core->setReporting();
 	

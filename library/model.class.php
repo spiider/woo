@@ -1,7 +1,7 @@
 <?php
+use library\Database;
 
-
-class Model
+class Model extends Database
 {
     protected $_model;
 

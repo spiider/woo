@@ -1,7 +1,7 @@
 <?php
-//namespace library\Database;
+namespace library\Database;
 
-class Db
+class Database
 {
     public $queryString;
     protected $database_type = DB_TYPE;
