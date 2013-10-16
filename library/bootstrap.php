@@ -1,12 +1,13 @@
 <?php
-	
-	require_once('../config/config.php');
+    use library\Core as core;
+
+    require_once('../config/config.php');
 	require_once('../config/inflection.php');
-	require_once('../library/core.php');
+	require_once('../library/Base.php');
 
     // autoload from namespaces
     // implementing
-//    function __autoload($className)
+//    function autoload($className)
 //    {
 //        $className = ltrim($className, '\\');
 //        $fileName  = '';
@@ -20,6 +21,7 @@
 //
 //        require_once $fileName;
 //    }
+//    spl_autoload_register("autoload");
 
 	function __autoload($className) {
 		if (file_exists('../library/'. strtolower($className) . '.class.php')) {
@@ -36,7 +38,7 @@
 
     $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     $url = urldecode($url);
-    $requested = "../public".$uri;
+    $requested = "../public".$url;
 
     // This file allows us to emulate Apache's "mod_rewrite" functionality from the
     // built-in PHP web server.
@@ -50,13 +52,15 @@
 	//else $url = "home";
 
     $sessions = new sessions();
-	$core = new CORE;
-	$core->setReporting();
+    $Core = new core\Base();
+	$Core->setReporting();
 	
 	//$core->gzipOutput() || ob_start("ob_gzhandler");
 	
 	$cache = new Cache;
 	$inflect = new Inflection;
-	
-	
-	$core->routing($url);
+
+    /*
+     * Routing
+     */
+	$Core->routing($url);

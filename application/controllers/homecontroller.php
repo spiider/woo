@@ -38,12 +38,12 @@ class HomeController extends Controller
 
     public function index()
     {
-        $this->set("lol_streams",$this->Home->StreamFrontPage("lol"));
-        $this->set("csgo_streams",$this->Home->StreamFrontPage("csgo"));
-        $this->set("sc2_streams",$this->Home->StreamFrontPage("sc2"));
-        $this->set("rss_hltv",$this->Home->getFeed("http://www.hltv.org/news.rss.php"));
-        $this->set("rss_frag",$this->Home->getFeed("http://fraglider.pt/rss.xml"));
-        $this->set("rss_reddit",$this->Home->getFeed("http://www.reddit.com/r/leagueoflegends/.rss"));
+//        $this->set("lol_streams",$this->Home->StreamFrontPage("lol"));
+//        $this->set("csgo_streams",$this->Home->StreamFrontPage("csgo"));
+//        $this->set("sc2_streams",$this->Home->StreamFrontPage("sc2"));
+//        $this->set("rss_hltv",$this->Home->getFeed("http://www.hltv.org/news.rss.php"));
+//        $this->set("rss_frag",$this->Home->getFeed("http://fraglider.pt/rss.xml"));
+//        $this->set("rss_reddit",$this->Home->getFeed("http://www.reddit.com/r/leagueoflegends/.rss"));
 
     }
 
