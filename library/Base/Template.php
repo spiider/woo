@@ -27,7 +27,7 @@ class Template {
 				include ('../application/views/' . $this->_controller . '/header.php');
 			} else {
 
-					include(__DIR__ . '/../application/views/header.php');
+					include('../application/views/header.php');
 			}
 		}
 

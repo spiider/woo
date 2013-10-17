@@ -13,15 +13,18 @@ function autoload($className)
         $className = substr($className, $lastNsPos + 1);
         $fileName  = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
     }
+
     $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
     $e = explode("\\", $className);
+
     $className = end($e);
+    $className = $className.'.php';
     if (file_exists(DIR_UP.$fileName)) {
         require_once(DIR_UP.$fileName);
-    } else if (file_exists(DIR_UP . 'application/controllers/' . strtolower($className) . '.php')) {
-        require_once(DIR_UP . 'application/controllers/' . strtolower($className) . '.php');
-    } else if (file_exists(DIR_UP . 'application/models/' . strtolower($className) . '.php')) {
-        require_once(DIR_UP . 'application/models/' . strtolower($className) . '.php');
+    } else if (file_exists(DIR_UP . 'application/controllers/' . strtolower($className))) {
+        require_once(DIR_UP . 'application/controllers/' . strtolower($className));
+    } else if (file_exists(DIR_UP . 'application/models/' . strtolower($className))) {
+        require_once(DIR_UP . 'application/models/' . strtolower($className));
     } else {
         /* Error Generation Code Here */
     }
@@ -41,4 +44,4 @@ if ($url !== '/' and file_exists(DIR_UP . "public" . $url)) {
 Base\Base::setReporting();
 //$cache = new Cache;
 $inflect = new library\Base\Inflection();
-Base\Base::setReporting($url);
+Base\Base::routing($url);

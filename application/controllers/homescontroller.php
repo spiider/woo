@@ -1,8 +1,7 @@
 <?php
-//namespace application\controllers;
-//use library;
+use library\Base\Controller;
 
-class HomeController extends library\Base\Controller
+class HomesController extends Controller
 {
     public function beforeAction()
     {

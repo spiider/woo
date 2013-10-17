@@ -1,5 +1,6 @@
 <?php
 namespace library\Base;
+use library\Storage\Database;
 
 class Model extends Database
 {

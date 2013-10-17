@@ -1,7 +1,7 @@
 <?php
+use library\Base\Model;
 
-
-class Home extends library\Base\Model
+class Home extends Model
 {
 
 }

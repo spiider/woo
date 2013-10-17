@@ -21,8 +21,6 @@ class Controller {
 
 		$this->$model = new $model;
 		$this->_template = new Template($controller,$action);
-        var_dump($this->$model);
-        var_dump($this->_template);
 	}
 
 	public function set($name,$value) {

@@ -1,12 +1,7 @@
 <?php
 namespace library\Base;
 
-use HomeController;
-
 class Base {
-    private $default = array("controller" => 'home', "action" => 'index');
-   // private $defaultController = "HomeController"; // later will be default configurable
-
     public static function setReporting()
     {
         if (DEVELOPMENT_ENVIRONMENT == true) {
@@ -24,19 +19,19 @@ class Base {
      *  Routing url to work with MVC
      *  @queryString will be pass all extra parameters
      */
-    public function routing($url) {
+    public static function routing($url) {
         // Prevent Case sensitive requests
         $url = strtolower($url);
         $queryString = array(); // or $queryString = []; ?
         if ($url == "/") {
-            $controller = $this->default['controller'];
-            $action = $this->default['action'];
+            $controller = "home";
+            $action = "index";
         } else {
             $queryString = explode("/", substr($url, 1));
             $controller = $queryString[0];
             array_shift($queryString);
             if(!empty($queryString[0])) {
-                if((int)method_exists(ucfirst($controller).'Controller', $queryString[0]))
+                if((int)method_exists(ucfirst($controller).'sController', $queryString[0]))
                 {
                     $action = $queryString[0];
                     array_shift($queryString);
@@ -49,9 +44,15 @@ class Base {
             }
         }
 
-        $controllerName = ucfirst($controller).'Controller';
-        if(file_exists(DIR_UP.'application/controllers/' . strtolower($controllerName) . '.php'))	$dispatch = new $controllerName($controller,$action);
-        else $dispatch = new HomeController("home","index");
+        $controllerName = ucfirst($controller).'sController';
+        if(file_exists(DIR_UP.'application/controllers/' . strtolower($controllerName) . '.php'))
+        {
+            $dispatch = new $controllerName($controller,$action);
+        } else {
+            $action = 'index';
+            $controllerName = 'HomesController';
+            $dispatch = new $controllerName('home',$action);
+        }
 
         if ((int)method_exists($controllerName, $action)) {
             call_user_func_array(array($dispatch,"beforeAction"),$queryString);
