@@ -17,7 +17,6 @@ class HomesController extends Controller
 
     public function index()
     {
-        $this->doNotRenderHeader = 1;
         echo "hello world";
         $this->set("teste","Aro");
     }

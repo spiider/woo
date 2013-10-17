@@ -22,7 +22,6 @@ class Base {
     public static function routing($url) {
         // Prevent Case sensitive requests
         $url = strtolower($url);
-        $queryString = array(); // or $queryString = []; ?
         if ($url == "/") {
             $controller = "home";
             $action = "index";
@@ -43,7 +42,6 @@ class Base {
                 $action = 'index'; // Default Action
             }
         }
-
         $controllerName = ucfirst($controller).'sController';
         if(file_exists(DIR_UP.'application/controllers/' . strtolower($controllerName) . '.php'))
         {
