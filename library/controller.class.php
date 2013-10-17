@@ -1,5 +1,5 @@
 <?php
-namespace library\Controller;
+namespace library;
 
 class Controller {
 	
@@ -9,24 +9,23 @@ class Controller {
 
 	public $doNotRenderHeader;
 	public $render;
-    public $logged;
 
 	public function __construct($controller, $action) {
-		
-		global $inflect;
 
         $this->_controller = ucfirst($controller);
 		$this->_action = $action;
 		
-		$model = ucfirst($inflect->singularize($controller));
+		$model = ucfirst(inflection::singularize($controller));
 		$this->doNotRenderHeader = 0;
 		$this->render = 1;
+
 		$this->$model = new $model;
 		$this->_template = new Template($controller,$action);
+        var_dump($this->$model);
+        var_dump($this->_template);
 	}
 
 	public function set($name,$value) {
-
 		$this->_template->set($name,$value);
 	}
 

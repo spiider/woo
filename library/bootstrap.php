@@ -1,6 +1,4 @@
 <?php
-    use application\controllers;
-
     require_once('../config/config.php');
 	require_once(DIR_UP.'config/inflection.php');
 	require_once(DIR_UP.'library/Base.php');
@@ -12,6 +10,7 @@
     {
         $e = explode("\\", $className);
         $className = end($e);
+        var_dump("load:",$className);
         if (file_exists(DIR_UP.'library/'. ucfirst(strtolower($className)) . '.class.php')) {
             require_once(DIR_UP.'library/'. ucfirst(strtolower($className)) . '.class.php');
         } else if (file_exists(DIR_UP.'application/controllers/' . strtolower($className) . '.php')) {
@@ -46,8 +45,8 @@
 	
 	//$core->gzipOutput() || ob_start("ob_gzhandler");
 	
-	$cache = new Cache;
-	$inflect = new Inflection;
+	//$cache = new Cache;
+	$inflect = new library\Inflection();
 
     /*
      * Routing
