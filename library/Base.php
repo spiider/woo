@@ -1,10 +1,10 @@
 <?php
-namespace library\Core;
-use library\Controller;
+namespace library;
+use application\controllers;
 
 class Base {
     private $default = array("controller" => 'home', "action" => 'index');
-    private $defaultController = "HomeController"; // later will be default configurable
+   // private $defaultController = "HomeController"; // later will be default configurable
 
     public function setReporting()
     {
@@ -47,10 +47,10 @@ class Base {
                 $action = 'index'; // Default Action
             }
         }
-        $controllerName = ucfirst($controller).'Controller';
+        $controllerName = 'controllers\\'.ucfirst($controller).'Controller';
 
         if(file_exists(DIR_UP.'application/controllers/' . strtolower($controllerName) . '.php'))	$dispatch = new $controllerName($controller,$action);
-        else $dispatch = new $this->defaultController("home","index");
+        else $dispatch = new  controllers\HomeController("home","index");
 
         if ((int)method_exists($controllerName, $action)) {
             call_user_func_array(array($dispatch,"beforeAction"),$queryString);

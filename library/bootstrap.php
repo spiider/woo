@@ -1,6 +1,5 @@
 <?php
-    use library\Core as core;
-    use library\Controller as Controller;
+    use application\controllers;
 
     require_once('../config/config.php');
 	require_once(DIR_UP.'config/inflection.php');
@@ -11,32 +10,17 @@
     // Temporary function!
     function autoload($className)
     {
-//        $folder = (strpos($className,'Controller') !== false) ? 'application/controllers/' : 'library/';
-//        var_dump($className);
-//        $className = ltrim($className, '\\');
-//        $fileName  = '';
-//        $namespace = '';
-//        if ($lastNsPos = strrpos($className, '\\')) {
-//            $namespace = substr($className, 0, $lastNsPos);
-//            $className = substr($className, $lastNsPos + 1);
-//            $fileName  = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
-//        }
-//        $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.class.php';
-//
-//        require_once DIR_UP.$folder.$fileName;
-        if(strpos($className,'\\') !== false) {
-            $e =  explode("/", $className);
-            $className = $e['1'];
-        }
+        $e = explode("\\", $className);
+        $className = end($e);
         if (file_exists(DIR_UP.'library/'. ucfirst(strtolower($className)) . '.class.php')) {
-			require_once(DIR_UP.'library/'. ucfirst(strtolower($className)) . '.class.php');
-			} else if (file_exists(DIR_UP.'application/controllers/' . ucfirst(strtolower($className)) . '.php')) {
-			require_once(DIR_UP.'application/controllers/' . ucfirst(strtolower($className)) . '.php');
-			} else if (file_exists(DIR_UP.'application/models/' . ucfirst(strtolower($className)) . '.php')) {
-			require_once(DIR_UP.'application/models/' . ucfirst(strtolower($className)) . '.php');
-			} else {
-			/* Error Generation Code Here */
-		}
+            require_once(DIR_UP.'library/'. ucfirst(strtolower($className)) . '.class.php');
+        } else if (file_exists(DIR_UP.'application/controllers/' . strtolower($className) . '.php')) {
+            require_once(DIR_UP.'application/controllers/' . strtolower($className) . '.php');
+        } else if (file_exists(DIR_UP.'application/models/' . strtolower($className) . '.php')) {
+            require_once(DIR_UP.'application/models/' . strtolower($className) . '.php');
+        } else {
+            /* Error Generation Code Here */
+        }
     }
     spl_autoload_register("autoload");
 
@@ -57,7 +41,7 @@
 
     //$sessions = new sessions();
   //  new Controller\Controller("home","index");
-    $Core = new core\Base();
+    $Core = new library\Base();
 	$Core->setReporting();
 	
 	//$core->gzipOutput() || ob_start("ob_gzhandler");

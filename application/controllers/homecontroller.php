@@ -1,6 +1,8 @@
 <?php
+namespace application\controllers;
+use library\Controller as Controller;
 
-class HomeController extends library\Controller\Controller
+class HomeController extends Controller
 {
     public function beforeAction()
     {
@@ -16,6 +18,7 @@ class HomeController extends library\Controller\Controller
 
     public function index()
     {
+        $this->doNotRenderHeader = 1;
         echo "hello world";
     }
 
