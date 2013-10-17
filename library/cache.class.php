@@ -1,6 +1,4 @@
 <?php
-namespace library;
-
 class Cache {
 
 	public function get($fileName) {

@@ -1,7 +1,6 @@
 <?php
 namespace library;
-
-use HomeController;
+use application\controllers;
 
 class Base {
     private $default = array("controller" => 'home', "action" => 'index');
@@ -48,11 +47,10 @@ class Base {
                 $action = 'index'; // Default Action
             }
         }
-//        $controllerName = 'controllers\\'.ucfirst($controller).'Controller';
-        $controllerName = ucfirst($controller).'Controller';
-var_dump("here:",$controllerName,$controller,$action,$queryString);
+        $controllerName = 'controllers\\'.ucfirst($controller).'Controller';
+
         if(file_exists(DIR_UP.'application/controllers/' . strtolower($controllerName) . '.php'))	$dispatch = new $controllerName($controller,$action);
-        else $dispatch = new HomeController("home","index");
+        else $dispatch = new  controllers\HomeController("home","index");
 
         if ((int)method_exists($controllerName, $action)) {
             call_user_func_array(array($dispatch,"beforeAction"),$queryString);

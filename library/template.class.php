@@ -1,6 +1,4 @@
 <?php
-namespace library;
-
 class Template {
 	
 	protected $variables = array();
@@ -20,7 +18,7 @@ class Template {
     function render($doNotRenderHeader = 0) {
 
 		extract($this->variables);
-
+		
 		if ($doNotRenderHeader == 0) {
 			
 			if (file_exists('../application/views/' . $this->_controller . '/header.php')) {
@@ -30,6 +28,9 @@ class Template {
 					include(__DIR__ . '/../application/views/header.php');
 			}
 		}
+
+        //var_dump($this->_controller,$this->_action);
+        //exit;
 
 		if (file_exists('../application/views/' . $this->_controller . "/" . $this->_action . '.php')) {
 			include ('../application/views/' . $this->_controller ."/". $this->_action . '.php');
