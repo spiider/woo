@@ -22,12 +22,11 @@ class Base {
     public static function routing($url) {
         // Prevent Case sensitive requests
         $url = strtolower($url);
-        $queryString = array(); // or $queryString = []; ?
         if ($url == "/") {
             $controller = "home";
             $action = "index";
         } else {
-            $queryString = explode("/", substr($url, 1));
+            $queryString[] = explode("/", substr($url, 1));
             $controller = $queryString[0];
             array_shift($queryString);
             if(!empty($queryString[0])) {
