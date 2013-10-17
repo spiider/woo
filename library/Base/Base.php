@@ -1,12 +1,13 @@
 <?php
-namespace library;
-use application\controllers;
+namespace library\Base;
+
+use HomeController;
 
 class Base {
     private $default = array("controller" => 'home', "action" => 'index');
    // private $defaultController = "HomeController"; // later will be default configurable
 
-    public function setReporting()
+    public static function setReporting()
     {
         if (DEVELOPMENT_ENVIRONMENT == true) {
             error_reporting(E_ALL);
@@ -47,10 +48,10 @@ class Base {
                 $action = 'index'; // Default Action
             }
         }
-        $controllerName = 'controllers\\'.ucfirst($controller).'Controller';
 
+        $controllerName = ucfirst($controller).'Controller';
         if(file_exists(DIR_UP.'application/controllers/' . strtolower($controllerName) . '.php'))	$dispatch = new $controllerName($controller,$action);
-        else $dispatch = new  controllers\HomeController("home","index");
+        else $dispatch = new HomeController("home","index");
 
         if ((int)method_exists($controllerName, $action)) {
             call_user_func_array(array($dispatch,"beforeAction"),$queryString);

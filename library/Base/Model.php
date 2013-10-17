@@ -1,5 +1,5 @@
 <?php
-use library\Database;
+namespace library\Base;
 
 class Model extends Database
 {
@@ -7,10 +7,8 @@ class Model extends Database
 
 	public function __construct()
 	{
-        global $inflect;
-
         $this->_model = get_class($this);
-        $this->_table = strtolower($inflect->pluralize($this->_model));
+        $this->_table = strtolower(inflection::pluralize($this->_model));
 
 	}
 

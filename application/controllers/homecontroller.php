@@ -1,8 +1,8 @@
 <?php
-namespace application\controllers;
-use library\Controller as Controller;
+//namespace application\controllers;
+//use library;
 
-class HomeController extends Controller
+class HomeController extends library\Base\Controller
 {
     public function beforeAction()
     {
@@ -20,6 +20,7 @@ class HomeController extends Controller
     {
         $this->doNotRenderHeader = 1;
         echo "hello world";
+        $this->set("teste","Aro");
     }
 
     public function afterAction()
