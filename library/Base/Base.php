@@ -22,6 +22,7 @@ class Base {
     public static function routing($url) {
         // Prevent Case sensitive requests
         $url = strtolower($url);
+        $queryString  = array();
         if ($url == "/") {
             $controller = "home";
             $action = "index";
