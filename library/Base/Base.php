@@ -49,7 +49,7 @@ class Base {
         } else {
             $action = 'index';
             $controllerName = 'HomesController';
-            $dispatch = new $controllerName('home',$action);
+            $dispatch = new $controllerName('homes',$action);
         }
 
         if ((int)method_exists($controllerName, $action)) {
