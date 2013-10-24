@@ -12,5 +12,5 @@ define("RECAPTCHA_API_SERVER", "http://www.google.com/recaptcha/api");
 define("RECAPTCHA_API_SECURE_SERVER", "https://www.google.com/recaptcha/api");
 define("RECAPTCHA_VERIFY_SERVER", "www.google.com");
 
-define('RECAPTCHA_PUBLICKEY',"6LdUo-YSAAAAAMZpasmt7kTp4mRUmDkY0eSqYHMc");
-define('RECAPTCHA_PRIVATEKEY',"6LdUo-YSAAAAAGCrnDpTAMHomfnmP_ergJMU3h4F");
+define('RECAPTCHA_PUBLICKEY',"RECAPTCHA_PUBLICKEY");
+define('RECAPTCHA_PRIVATEKEY',"RECAPTCHA_PRIVATEKEY");
