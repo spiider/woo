@@ -24,22 +24,22 @@ class Template {
 		if ($doNotRenderHeader == 0) {
 			
 			if (file_exists('../application/views/' . $this->_controller . 's/header.php')) {
-				include ('../application/views/' . $this->_controller . '/header.php');
+				include ('../application/views/' . $this->_controller . 's/header.php');
 			} else {
 
 					include('../application/views/header.php');
 			}
 		}
 
-		if (file_exists('../application/views/' . $this->_controller . "/" . $this->_action . '.php')) {
-			include ('../application/views/' . $this->_controller ."/". $this->_action . '.php');
+		if (file_exists('../application/views/' . $this->_controller . "s/" . $this->_action . '.php')) {
+			include ('../application/views/' . $this->_controller ."s/". $this->_action . '.php');
 		}else{
             include('../application/views/homes/index.php');
         }
 			
 		if ($doNotRenderHeader == 0) {
 			if (file_exists('../application/views/' . $this->_controller . 's/footer.php')) {
-				include ('../application/views/' . $this->_controller . '/footer.php');
+				include ('../application/views/' . $this->_controller . 's/footer.php');
 			} else {
 				include('../application/views/footer.php');
 			}
