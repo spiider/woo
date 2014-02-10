@@ -13,7 +13,7 @@ Routing
 
 We have two options to routing urls
     /{controller}/:parameter/{action}/
-or
+	or
     /{controller}/{action}/:parameter/
-
+	
 PHP framework
