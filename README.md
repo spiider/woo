@@ -1,6 +1,9 @@
 woo
 ===
 
+This is my bootstrap framework for my plataforms
+
+
 application – application specific code.
 config – database/server configuration.
 library – framework code.
